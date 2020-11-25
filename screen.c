@@ -1,3 +1,4 @@
+
 BOOL SaveToFile(HBITMAP hBitmap3, LPCTSTR lpszFileName)
 {
   HDC hDC;
@@ -77,25 +78,25 @@ BOOL SaveToFile(HBITMAP hBitmap3, LPCTSTR lpszFileName)
   return TRUE;
 }
 
-int screenCapture(int x, int y, int w, int h, LPCSTR fname)
-{
-  HDC hdcSource = GetDC(NULL);
-  HDC hdcMemory = CreateCompatibleDC(hdcSource);
+// int screenCapture(int x, int y, int w, int h, LPCSTR fname)
+// {
+//     HDC hdcSource = GetDC(NULL);
+//     HDC hdcMemory = CreateCompatibleDC(hdcSource);
 
-  int capX = GetDeviceCaps(hdcSource, HORZRES);
-  int capY = GetDeviceCaps(hdcSource, VERTRES);
+//     int capX = GetDeviceCaps(hdcSource, HORZRES);
+//     int capY = GetDeviceCaps(hdcSource, VERTRES);
 
-  HBITMAP hBitmap = CreateCompatibleBitmap(hdcSource, w, h);
-  HBITMAP hBitmapOld = (HBITMAP)SelectObject(hdcMemory, hBitmap);
+//     HBITMAP hBitmap = CreateCompatibleBitmap(hdcSource, w, h);
+//     HBITMAP hBitmapOld = (HBITMAP)SelectObject(hdcMemory, hBitmap);
 
-  BitBlt(hdcMemory, 0, 0, w, h, hdcSource, x, y, SRCCOPY);
-  hBitmap = (HBITMAP)SelectObject(hdcMemory, hBitmapOld);
+//     BitBlt(hdcMemory, 0, 0, w, h, hdcSource, x, y, SRCCOPY);
+//     hBitmap = (HBITMAP)SelectObject(hdcMemory, hBitmapOld);
 
-  DeleteDC(hdcSource);
-  DeleteDC(hdcMemory);
+//     DeleteDC(hdcSource);
+//     DeleteDC(hdcMemory);
 
-  HPALETTE hpal = NULL;
-  if (SaveToFile(hBitmap, fname))
-    return 1;
-  return 0;
-}
+//     HPALETTE hpal = NULL;
+//     if (SaveToFile(hBitmap, fname))
+//         return 1;
+//     return 0;
+// }
