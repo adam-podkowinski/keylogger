@@ -41,7 +41,5 @@ CMakeFiles/WindowsProfiler.dir/WindowsProfiler.cpp.obj: ../include/openssl/symha
 CMakeFiles/WindowsProfiler.dir/WindowsProfiler.cpp.obj: ../include/openssl/tls1.h
 CMakeFiles/WindowsProfiler.dir/WindowsProfiler.cpp.obj: ../include/openssl/x509.h
 CMakeFiles/WindowsProfiler.dir/WindowsProfiler.cpp.obj: ../include/openssl/x509_vfy.h
-CMakeFiles/WindowsProfiler.dir/WindowsProfiler.cpp.obj: ../CSmtp.h
 CMakeFiles/WindowsProfiler.dir/WindowsProfiler.cpp.obj: ../WindowsProfiler.cpp
-CMakeFiles/WindowsProfiler.dir/WindowsProfiler.cpp.obj: ../md5.h
 
