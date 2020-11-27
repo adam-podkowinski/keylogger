@@ -1,0 +1,7 @@
+[
+{
+  "directory": "E:/keylogger/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/WindowsProfiler.dir/includes_CXX.rsp -g -o CMakeFiles\\WindowsProfiler.dir\\WindowsProfiler.cpp.obj -c E:\\keylogger\\WindowsProfiler.cpp",
+  "file": "E:/keylogger/WindowsProfiler.cpp"
+}
+]
