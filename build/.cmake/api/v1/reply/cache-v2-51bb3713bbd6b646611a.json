@@ -659,7 +659,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Program Files (x86)/Project"
+			"value" : "C:/Program Files (x86)/WindowsProfiler"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -1318,28 +1318,64 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "Project_BINARY_DIR",
+			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL",
 			"properties" : 
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
+					"value" : "Details about finding OpenSSL"
 				}
 			],
-			"type" : "STATIC",
-			"value" : "E:/keylogger/build"
+			"type" : "INTERNAL",
+			"value" : "[C:/Program Files/OpenSSL-Win64/lib/libcrypto.lib][C:/Program Files/OpenSSL-Win64/include][c ][v1.1.1h()]"
 		},
 		{
-			"name" : "Project_SOURCE_DIR",
+			"name" : "LIB_EAY",
 			"properties" : 
 			[
 				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
 					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
+					"value" : "Path to a library."
 				}
 			],
-			"type" : "STATIC",
-			"value" : "E:/keylogger"
+			"type" : "FILEPATH",
+			"value" : "C:/Program Files/OpenSSL-Win64/lib/libcrypto.lib"
+		},
+		{
+			"name" : "OPENSSL_INCLUDE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a file."
+				}
+			],
+			"type" : "PATH",
+			"value" : "C:/Program Files/OpenSSL-Win64/include"
+		},
+		{
+			"name" : "SSL_EAY",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "C:/Program Files/OpenSSL-Win64/lib/libssl.lib"
 		},
 		{
 			"name" : "WindowsProfiler_BINARY_DIR",

@@ -141,6 +141,33 @@ WindowsProfiler/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\WindowsProfiler.dir\build.make CMakeFiles/WindowsProfiler.dir/build
 .PHONY : WindowsProfiler/fast
 
+CSmtp.obj: CSmtp.cpp.obj
+
+.PHONY : CSmtp.obj
+
+# target to build an object file
+CSmtp.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WindowsProfiler.dir\build.make CMakeFiles/WindowsProfiler.dir/CSmtp.cpp.obj
+.PHONY : CSmtp.cpp.obj
+
+CSmtp.i: CSmtp.cpp.i
+
+.PHONY : CSmtp.i
+
+# target to preprocess a source file
+CSmtp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WindowsProfiler.dir\build.make CMakeFiles/WindowsProfiler.dir/CSmtp.cpp.i
+.PHONY : CSmtp.cpp.i
+
+CSmtp.s: CSmtp.cpp.s
+
+.PHONY : CSmtp.s
+
+# target to generate assembly for a file
+CSmtp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WindowsProfiler.dir\build.make CMakeFiles/WindowsProfiler.dir/CSmtp.cpp.s
+.PHONY : CSmtp.cpp.s
+
 WindowsProfiler.obj: WindowsProfiler.cpp.obj
 
 .PHONY : WindowsProfiler.obj
@@ -168,6 +195,60 @@ WindowsProfiler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\WindowsProfiler.dir\build.make CMakeFiles/WindowsProfiler.dir/WindowsProfiler.cpp.s
 .PHONY : WindowsProfiler.cpp.s
 
+base64.obj: base64.cpp.obj
+
+.PHONY : base64.obj
+
+# target to build an object file
+base64.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WindowsProfiler.dir\build.make CMakeFiles/WindowsProfiler.dir/base64.cpp.obj
+.PHONY : base64.cpp.obj
+
+base64.i: base64.cpp.i
+
+.PHONY : base64.i
+
+# target to preprocess a source file
+base64.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WindowsProfiler.dir\build.make CMakeFiles/WindowsProfiler.dir/base64.cpp.i
+.PHONY : base64.cpp.i
+
+base64.s: base64.cpp.s
+
+.PHONY : base64.s
+
+# target to generate assembly for a file
+base64.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WindowsProfiler.dir\build.make CMakeFiles/WindowsProfiler.dir/base64.cpp.s
+.PHONY : base64.cpp.s
+
+md5.obj: md5.cpp.obj
+
+.PHONY : md5.obj
+
+# target to build an object file
+md5.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WindowsProfiler.dir\build.make CMakeFiles/WindowsProfiler.dir/md5.cpp.obj
+.PHONY : md5.cpp.obj
+
+md5.i: md5.cpp.i
+
+.PHONY : md5.i
+
+# target to preprocess a source file
+md5.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WindowsProfiler.dir\build.make CMakeFiles/WindowsProfiler.dir/md5.cpp.i
+.PHONY : md5.cpp.i
+
+md5.s: md5.cpp.s
+
+.PHONY : md5.s
+
+# target to generate assembly for a file
+md5.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WindowsProfiler.dir\build.make CMakeFiles/WindowsProfiler.dir/md5.cpp.s
+.PHONY : md5.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -177,9 +258,18 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... WindowsProfiler
+	@echo ... CSmtp.obj
+	@echo ... CSmtp.i
+	@echo ... CSmtp.s
 	@echo ... WindowsProfiler.obj
 	@echo ... WindowsProfiler.i
 	@echo ... WindowsProfiler.s
+	@echo ... base64.obj
+	@echo ... base64.i
+	@echo ... base64.s
+	@echo ... md5.obj
+	@echo ... md5.i
+	@echo ... md5.s
 .PHONY : help
 
 

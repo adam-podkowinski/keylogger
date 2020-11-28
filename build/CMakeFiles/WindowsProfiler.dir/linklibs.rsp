@@ -1,1 +1,1 @@
-  -LE:/keylogger/lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
+ "C:/Program Files/OpenSSL-Win64/lib/libssl.lib" -lwsock32 -lws2_32 "C:/Program Files/OpenSSL-Win64/lib/libcrypto.lib" -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

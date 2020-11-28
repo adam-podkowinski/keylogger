@@ -6,16 +6,18 @@
 
 #IncludeRegexTransform: 
 
-../include/openssl/asn1.h
+C:/Program Files/OpenSSL-Win64/include/openssl/asn1.h
 time.h
 -
 openssl/e_os2.h
 -
+openssl/opensslconf.h
+-
 openssl/bio.h
 -
-openssl/stack.h
--
 openssl/safestack.h
+-
+openssl/asn1err.h
 -
 openssl/symhacks.h
 -
@@ -24,7 +26,21 @@ openssl/ossl_typ.h
 openssl/bn.h
 -
 
-../include/openssl/bio.h
+C:/Program Files/OpenSSL-Win64/include/openssl/asn1err.h
+openssl/symhacks.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/async.h
+stdlib.h
+-
+openssl/asyncerr.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/asyncerr.h
+openssl/symhacks.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/bio.h
 openssl/e_os2.h
 -
 stdio.h
@@ -33,37 +49,69 @@ stdarg.h
 -
 openssl/crypto.h
 -
+openssl/bioerr.h
+-
 
-../include/openssl/bn.h
+C:/Program Files/OpenSSL-Win64/include/openssl/bioerr.h
+openssl/symhacks.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/bn.h
 openssl/e_os2.h
 -
 stdio.h
 -
+openssl/opensslconf.h
+-
 openssl/ossl_typ.h
 -
-assert.h
+openssl/crypto.h
+-
+openssl/bnerr.h
 -
 
-../include/openssl/buffer.h
+C:/Program Files/OpenSSL-Win64/include/openssl/bnerr.h
+openssl/symhacks.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/buffer.h
 openssl/ossl_typ.h
+-
+openssl/crypto.h
+-
+openssl/buffererr.h
 -
 stddef.h
 -
 sys/types.h
 -
 
-../include/openssl/comp.h
-openssl/crypto.h
+C:/Program Files/OpenSSL-Win64/include/openssl/buffererr.h
+openssl/symhacks.h
 -
 
-../include/openssl/crypto.h
+C:/Program Files/OpenSSL-Win64/include/openssl/comp.h
+openssl/opensslconf.h
+-
+openssl/crypto.h
+-
+openssl/comperr.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/comperr.h
+openssl/symhacks.h
+-
+openssl/opensslconf.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/crypto.h
 stdlib.h
+-
+time.h
 -
 openssl/e_os2.h
 -
 stdio.h
--
-openssl/stack.h
 -
 openssl/safestack.h
 -
@@ -71,22 +119,66 @@ openssl/opensslv.h
 -
 openssl/ossl_typ.h
 -
+openssl/opensslconf.h
+-
+openssl/cryptoerr.h
+-
 openssl/ebcdic.h
 -
 openssl/symhacks.h
 -
+openssl/opensslv.h
+-
+pthread.h
+-
 
-../include/openssl/dh.h
+C:/Program Files/OpenSSL-Win64/include/openssl/cryptoerr.h
+openssl/symhacks.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/ct.h
+openssl/opensslconf.h
+-
+openssl/ossl_typ.h
+-
+openssl/safestack.h
+-
+openssl/x509.h
+-
+openssl/cterr.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/cterr.h
+openssl/symhacks.h
+-
+openssl/opensslconf.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/dh.h
+openssl/opensslconf.h
+-
 openssl/e_os2.h
 -
 openssl/bio.h
+-
+openssl/asn1.h
 -
 openssl/ossl_typ.h
 -
 openssl/bn.h
 -
+openssl/dherr.h
+-
 
-../include/openssl/dsa.h
+C:/Program Files/OpenSSL-Win64/include/openssl/dherr.h
+openssl/symhacks.h
+-
+openssl/opensslconf.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/dsa.h
+openssl/opensslconf.h
+-
 openssl/e_os2.h
 -
 openssl/bio.h
@@ -99,22 +191,30 @@ openssl/bn.h
 -
 openssl/dh.h
 -
-
-../include/openssl/dtls1.h
-openssl/buffer.h
--
-openssl/pqueue.h
+openssl/dsaerr.h
 -
 
-../include/openssl/e_os2.h
+C:/Program Files/OpenSSL-Win64/include/openssl/dsaerr.h
+openssl/symhacks.h
+-
 openssl/opensslconf.h
 -
 
-../include/openssl/ebcdic.h
-sys/types.h
+C:/Program Files/OpenSSL-Win64/include/openssl/dtls1.h
+
+C:/Program Files/OpenSSL-Win64/include/openssl/e_os2.h
+openssl/opensslconf.h
+-
+inttypes.h
+-
+stdint.h
 -
 
-../include/openssl/ec.h
+C:/Program Files/OpenSSL-Win64/include/openssl/ebcdic.h
+stdlib.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/ec.h
 openssl/opensslconf.h
 -
 openssl/asn1.h
@@ -123,30 +223,16 @@ openssl/symhacks.h
 -
 openssl/bn.h
 -
-
-../include/openssl/ecdh.h
-openssl/opensslconf.h
--
-openssl/ec.h
--
-openssl/ossl_typ.h
--
-openssl/bn.h
+openssl/ecerr.h
 -
 
-../include/openssl/ecdsa.h
+C:/Program Files/OpenSSL-Win64/include/openssl/ecerr.h
+openssl/symhacks.h
+-
 openssl/opensslconf.h
--
-openssl/ec.h
--
-openssl/ossl_typ.h
--
-openssl/bn.h
 -
 
-../include/openssl/evp.h
-openssl/opensslconf.h
--
+C:/Program Files/OpenSSL-Win64/include/openssl/evp.h
 openssl/opensslconf.h
 -
 openssl/ossl_typ.h
@@ -155,72 +241,76 @@ openssl/symhacks.h
 -
 openssl/bio.h
 -
-openssl/fips.h
+openssl/evperr.h
 -
 openssl/objects.h
 -
 
-../include/openssl/hmac.h
+C:/Program Files/OpenSSL-Win64/include/openssl/evperr.h
+openssl/symhacks.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/hmac.h
 openssl/opensslconf.h
 -
 openssl/evp.h
 -
 
-../include/openssl/kssl.h
-openssl/opensslconf.h
--
-stdio.h
--
-ctype.h
--
-krb5.h
--
-
-../include/openssl/lhash.h
+C:/Program Files/OpenSSL-Win64/include/openssl/lhash.h
 openssl/e_os2.h
--
-stdio.h
 -
 openssl/bio.h
 -
 
-../include/openssl/obj_mac.h
+C:/Program Files/OpenSSL-Win64/include/openssl/obj_mac.h
 
-../include/openssl/objects.h
+C:/Program Files/OpenSSL-Win64/include/openssl/objects.h
 openssl/obj_mac.h
 -
 openssl/bio.h
 -
 openssl/asn1.h
 -
+openssl/objectserr.h
+-
 
-../include/openssl/opensslconf.h
+C:/Program Files/OpenSSL-Win64/include/openssl/objectserr.h
+openssl/symhacks.h
+-
 
-../include/openssl/opensslv.h
+C:/Program Files/OpenSSL-Win64/include/openssl/opensslconf.h
+openssl/opensslv.h
+-
 
-../include/openssl/ossl_typ.h
+C:/Program Files/OpenSSL-Win64/include/openssl/opensslv.h
+
+C:/Program Files/OpenSSL-Win64/include/openssl/ossl_typ.h
+limits.h
+-
 openssl/e_os2.h
 -
 
-../include/openssl/pem.h
+C:/Program Files/OpenSSL-Win64/include/openssl/pem.h
 openssl/e_os2.h
 -
 openssl/bio.h
 -
-openssl/stack.h
+openssl/safestack.h
 -
 openssl/evp.h
 -
 openssl/x509.h
 -
-openssl/pem2.h
+openssl/pemerr.h
 -
 openssl/symhacks.h
 -
 
-../include/openssl/pem2.h
+C:/Program Files/OpenSSL-Win64/include/openssl/pemerr.h
+openssl/symhacks.h
+-
 
-../include/openssl/pkcs7.h
+C:/Program Files/OpenSSL-Win64/include/openssl/pkcs7.h
 openssl/asn1.h
 -
 openssl/bio.h
@@ -231,24 +321,16 @@ openssl/symhacks.h
 -
 openssl/ossl_typ.h
 -
+openssl/pkcs7err.h
+-
 
-../include/openssl/pq_compat.h
+C:/Program Files/OpenSSL-Win64/include/openssl/pkcs7err.h
+openssl/symhacks.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/rsa.h
 openssl/opensslconf.h
 -
-openssl/bn.h
--
-
-../include/openssl/pqueue.h
-stdio.h
--
-stdlib.h
--
-string.h
--
-openssl/pq_compat.h
--
-
-../include/openssl/rsa.h
 openssl/asn1.h
 -
 openssl/bio.h
@@ -259,19 +341,33 @@ openssl/ossl_typ.h
 -
 openssl/bn.h
 -
-
-../include/openssl/safestack.h
-openssl/stack.h
+openssl/rsaerr.h
 -
 
-../include/openssl/sha.h
+C:/Program Files/OpenSSL-Win64/include/openssl/rsaerr.h
+openssl/symhacks.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/safestack.h
+openssl/stack.h
+-
+openssl/e_os2.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/sha.h
 openssl/e_os2.h
 -
 stddef.h
 -
 
-../include/openssl/ssl.h
+C:/Program Files/OpenSSL-Win64/include/openssl/srtp.h
+openssl/ssl.h
+-
+
+C:/Program Files/OpenSSL-Win64/include/openssl/ssl.h
 openssl/e_os2.h
+-
+openssl/opensslconf.h
 -
 openssl/comp.h
 -
@@ -281,19 +377,23 @@ openssl/x509.h
 -
 openssl/crypto.h
 -
-openssl/lhash.h
--
 openssl/buffer.h
+-
+openssl/lhash.h
 -
 openssl/pem.h
 -
 openssl/hmac.h
 -
-openssl/kssl.h
+openssl/async.h
 -
 openssl/safestack.h
 -
 openssl/symhacks.h
+-
+openssl/ct.h
+-
+openssl/sslerr.h
 -
 openssl/ssl2.h
 -
@@ -303,14 +403,12 @@ openssl/tls1.h
 -
 openssl/dtls1.h
 -
-openssl/ssl23.h
+openssl/srtp.h
 -
 
-../include/openssl/ssl2.h
+C:/Program Files/OpenSSL-Win64/include/openssl/ssl2.h
 
-../include/openssl/ssl23.h
-
-../include/openssl/ssl3.h
+C:/Program Files/OpenSSL-Win64/include/openssl/ssl3.h
 openssl/comp.h
 -
 openssl/buffer.h
@@ -319,21 +417,27 @@ openssl/evp.h
 -
 openssl/ssl.h
 -
-openssl/pq_compat.h
+
+C:/Program Files/OpenSSL-Win64/include/openssl/sslerr.h
+openssl/symhacks.h
 -
 
-../include/openssl/stack.h
+C:/Program Files/OpenSSL-Win64/include/openssl/stack.h
 
-../include/openssl/symhacks.h
+C:/Program Files/OpenSSL-Win64/include/openssl/symhacks.h
 openssl/e_os2.h
 -
 
-../include/openssl/tls1.h
+C:/Program Files/OpenSSL-Win64/include/openssl/tls1.h
 openssl/buffer.h
 -
+openssl/x509.h
+-
 
-../include/openssl/x509.h
+C:/Program Files/OpenSSL-Win64/include/openssl/x509.h
 openssl/e_os2.h
+-
+openssl/ossl_typ.h
 -
 openssl/symhacks.h
 -
@@ -343,17 +447,11 @@ openssl/evp.h
 -
 openssl/bio.h
 -
-openssl/stack.h
--
 openssl/asn1.h
 -
 openssl/safestack.h
 -
 openssl/ec.h
--
-openssl/ecdsa.h
--
-openssl/ecdh.h
 -
 openssl/rsa.h
 -
@@ -363,14 +461,14 @@ openssl/dh.h
 -
 openssl/sha.h
 -
-openssl/ossl_typ.h
+openssl/x509err.h
 -
 openssl/x509_vfy.h
 -
 openssl/pkcs7.h
 -
 
-../include/openssl/x509_vfy.h
+C:/Program Files/OpenSSL-Win64/include/openssl/x509_vfy.h
 openssl/x509.h
 -
 openssl/opensslconf.h
@@ -384,9 +482,51 @@ openssl/crypto.h
 openssl/symhacks.h
 -
 
-E:/keylogger/WindowsProfiler.cpp
+C:/Program Files/OpenSSL-Win64/include/openssl/x509err.h
+openssl/symhacks.h
+-
+
+E:/keylogger/CSmtp.h
+vector
+-
+string.h
+-
+assert.h
+-
+sys/types.h
+-
+sys/socket.h
+-
+sys/ioctl.h
+-
+netinet/in.h
+-
+arpa/inet.h
+-
+netdb.h
+-
+errno.h
+-
+stdio.h
+-
+iostream
+-
+unistd.h
+-
+openssl/ssl.h
+-
+winsock2.h
+-
+time.h
+-
 openssl/ssl.h
 E:/keylogger/openssl/ssl.h
+md5.h
+E:/keylogger/md5.h
+
+E:/keylogger/WindowsProfiler.cpp
+CSmtp.h
+E:/keylogger/CSmtp.h
 fstream
 -
 iostream
@@ -396,5 +536,13 @@ tchar.h
 vector
 -
 windows.h
+-
+
+E:/keylogger/md5.h
+stdio.h
+-
+fstream
+-
+iostream
 -
 

@@ -1,5 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/WindowsProfiler.dir/CSmtp.cpp.obj"
   "CMakeFiles/WindowsProfiler.dir/WindowsProfiler.cpp.obj"
+  "CMakeFiles/WindowsProfiler.dir/base64.cpp.obj"
+  "CMakeFiles/WindowsProfiler.dir/md5.cpp.obj"
   "WindowsProfiler.exe"
   "WindowsProfiler.exe.manifest"
   "WindowsProfiler.pdb"
