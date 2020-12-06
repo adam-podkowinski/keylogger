@@ -132,8 +132,8 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
     CkMailMan mailman;
     mailman.put_SmtpHost("smtp.gmail.com");
-    mailman.put_SmtpUsername("adampodkdev4@gmail.com");
-    mailman.put_SmtpPassword("bodziopl1");
+    mailman.put_SmtpUsername("youremail@gmail.com");
+    mailman.put_SmtpPassword("yourpassword");
     mailman.put_SmtpSsl(true);
     mailman.put_SmtpPort(587);
 
