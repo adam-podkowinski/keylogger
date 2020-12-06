@@ -1,3 +1,0 @@
-E:/keylogger/build/CMakeFiles/WindowsProfiler.dir
-E:/keylogger/build/CMakeFiles/edit_cache.dir
-E:/keylogger/build/CMakeFiles/rebuild_cache.dir
