@@ -4,6 +4,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 link_directories(chilkat)
 include_directories(chilkat/include)
-add_executable(WindowsProfiler WIN32 keylogger.cpp dotenv.h)
-#add_executable(WindowsProfiler keylogger.cpp dotenv.h)
+add_executable(WindowsProfiler WIN32 keylogger.cpp)
+#add_executable(WindowsProfiler keylogger.cpp)
 target_link_libraries(WindowsProfiler -static chilkat-9.5.0 ws2_32 crypt32 -static-libgcc -static-libstdc++ winpthread)

